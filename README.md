@@ -1,2 +1,7 @@
 # peri-sim
-Logistics discrete event simulator with focus on adversarial attacks and fault injection. 
+
+An open-source simulator for exposing failure modes in logistics
+and autonomous control systems.
+
+**Author:** Akhi Mocherla  
+**Maintained by:** <Org Name>
