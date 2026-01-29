@@ -4,4 +4,4 @@ An open-source simulator for exposing failure modes in logistics
 and autonomous control systems.
 
 **Author:** Akhi Mocherla  
-**Maintained by:** <Org Name>
+**Maintained by:** Akhi Mocherla
