@@ -11,12 +11,6 @@ class Order:
     def __init__(self, lognet, order_id, source, target):
         # grab variables from lognet
         self.lognet = lognet
-        self.node_properties = lognet.node_properties
-        self.env = lognet.env
-        self.network = lognet.network
-
-        self.node_resources = lognet.node_resources
-        self.graph = lognet.graph
 
         # order variables
         self.order_id = order_id
@@ -26,7 +20,7 @@ class Order:
 
     
     def get_shortest_path(self, source, target):
-        path = nx.shortest_path(self.graph, source, target, weight='weight')
+        path = nx.shortest_path(self.lognet.graph, source, target, weight='weight')
         return path
 
     def run(self):
@@ -37,14 +31,14 @@ class Order:
         while self.current != self.target:
             
             next_node = path[1]
-            travel_weight = self.network[self.current][next_node] # weight of edge from current to next node
+            travel_weight = self.lognet.network[self.current][next_node] # weight of edge from current to next node
             travel_time = random.randint(travel_weight-1, travel_weight+1)
 
             self.lognet.log_event('departed', order_id=self.order_id, 
                              from_node=self.current, to_node=next_node, 
                              travel_time=travel_time)
             
-            yield self.env.timeout(travel_time)
+            yield self.lognet.env.timeout(travel_time)
 
             self.lognet.log_event('arrived', order_id=self.order_id, location=next_node)
 
