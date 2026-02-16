@@ -6,8 +6,8 @@ from src.utils.network import LogisticsNetwork
 def test_graph_construction():
     env = simpy.Environment()
     network = {
-        'A': {'B': 5},
-        'B': {'C': 2}
+        'A': {'B': {'weight':5}},
+        'B': {'C': {'weight':2}}
     }
     node_proerties = {}
 

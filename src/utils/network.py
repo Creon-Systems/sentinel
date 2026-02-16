@@ -12,15 +12,9 @@ class LogisticsNetwork:
         # initialise environment
         self.env = env
         self.network = network
-        # metrics go here
-        self.completed_deliveries = 0
-        self.node_properties = node_properties
 
         # build graph for distance calculations
-        self.graph = nx.DiGraph()  # Directed graph
-        for node, neighbors in self.network.items():
-            for neighbor, weight in neighbors.items():
-                self.graph.add_edge(node, neighbor, weight=weight)
+        self.graph = nx.from_dict_of_dicts(network, create_using=nx.Graph())
 
         # generate simpy resources according to node properties
         self.node_resources = {}
@@ -28,7 +22,9 @@ class LogisticsNetwork:
             capacity = properties['Capacity']
             self.node_resources[node_name] = simpy.Resource(env, capacity=capacity)
 
+        # metrics for logging and analysis
         self.events = []
+        self.completed_deliveries = 0
         
     def log_event(self, event_type, **data):
         # Log an event with timestamp and event type

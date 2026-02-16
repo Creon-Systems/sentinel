@@ -31,7 +31,7 @@ class Order:
         while self.current != self.target:
             
             next_node = path[1]
-            travel_weight = self.lognet.network[self.current][next_node] # weight of edge from current to next node
+            travel_weight = self.lognet.network[self.current][next_node]['weight'] # weight of edge between nodes
             travel_time = random.randint(travel_weight-1, travel_weight+1)
 
             self.lognet.log_event('departed', order_id=self.order_id, 

@@ -11,15 +11,13 @@ class DummyLognet():
         # metrics go here
         self.completed_deliveries = 0
         #self.node_properties = {'A': {'Capacity': 1}, 'B':{'Capacity': 2}, 'C': {'Capacity': 3}}
-        self.network = {'A': {'B': 5}, 'B': {'C': 2}}
+        self.network = {'A': {'B': {'weight': 5}}, 
+                        'B': {'C': {'weight': 2}}}
         self.node_resources = {}
         self.events = []
         
         # build graph for distance calculations
-        self.graph = nx.DiGraph()  # Directed graph
-        for node, neighbors in self.network.items():
-            for neighbor, weight in neighbors.items():
-                self.graph.add_edge(node, neighbor, weight=weight)
+        self.graph = nx.from_dict_of_dicts(self.network, create_using=nx.Graph())
 
     def log_event(self, event_type, **data):
         pass
