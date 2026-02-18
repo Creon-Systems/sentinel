@@ -14,7 +14,7 @@ class LogisticsNetwork:
         self.network = network
 
         # build graph for distance calculations
-        self.graph = nx.from_dict_of_dicts(network, create_using=nx.Graph())
+        self.graph = nx.from_dict_of_dicts(network, create_using=nx.DiGraph())
 
         # generate simpy resources according to node properties
         self.node_resources = {}

@@ -27,9 +27,11 @@ class Order:
         
         path = self.get_shortest_path(self.source, self.target) # e.g [Hub_A, Hub_B, C_0]
         self.lognet.log_event('spawned', order_id=self.order_id, location=self.current)
-
+        print(path)
         while self.current != self.target:
             
+            print(self.current)
+            print(path[1])
             next_node = path[1]
             travel_weight = self.lognet.network[self.current][next_node]['weight'] # weight of edge between nodes
             travel_time = random.randint(travel_weight-1, travel_weight+1)
