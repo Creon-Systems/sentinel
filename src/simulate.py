@@ -6,6 +6,7 @@ from utils.network import LogisticsNetwork
 from utils.process import Order
 from utils.analysis import log_analysis
 from utils.generator import *
+from utils.node_status import *
 
 import random
 
@@ -13,7 +14,7 @@ import random
 env = simpy.Environment()
 
 random.seed(3)
-network = network_generation('ER', n=5, p=0.3, weight_low=1, weight_upper=10)
+network = network_generation('WS', n=5)
 node_properties = node_property_generation(network, 1, 3)
 
 print(network)
